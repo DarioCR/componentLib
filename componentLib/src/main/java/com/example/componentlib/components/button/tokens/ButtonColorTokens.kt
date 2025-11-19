@@ -5,6 +5,9 @@ import com.example.componentlib.components.button.ButtonColorScheme
 import com.example.componentlib.components.button.FabColorScheme
 import com.example.componentlib.components.button.IconButtonColorScheme
 
+/**
+ * Defines the palette used by each component state so that colors remain consistent across the app.
+ */
 internal object ButtonColorTokens {
     private val PrimaryContainer = Color(0xFF1A4FE3)
     private val PrimaryContainerDisabled = Color(0xFF9CB7FF)

@@ -207,6 +207,10 @@ private fun DynamicButtonPreview() {
     }
 }
 
+/**
+ * Helper slot that spaces button previews according to the variant padding, making screenshots
+ * easier to read in the preview panel.
+ */
 @Composable
 private fun ButtonPreviewSlot(
     variant: AppButtonVariant,
@@ -223,6 +227,9 @@ private fun ButtonPreviewSlot(
     )
 }
 
+/**
+ * Reusable container for previews that do not depend on a specific button variant.
+ */
 @Composable
 private fun GenericPreviewSlot(
     padding: Dp = ButtonTokens.iconSpacing,

@@ -15,8 +15,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.semantics.Role
 
+/**
+ * Standard floating action button with throttled click handling and TalkBack semantics.
+ *
+ * @param icon Icon displayed in the center.
+ * @param contentDescription TalkBack description (nullable when decorative).
+ * @param onClick Invoked when FAB is pressed (throttled to avoid spamming).
+ * @param modifier Optional modifier for layout/styling.
+ * @param enabled When false shows disabled colors and ignores clicks.
+ */
 @Composable
 fun AppFab(
     icon: ImageVector,
@@ -28,10 +36,13 @@ fun AppFab(
     val colors = ButtonTokens.fabColors(expanded = false)
     val containerColor = if (enabled) colors.containerColor else colors.disabledContainerColor
     val contentColor = if (enabled) colors.contentColor else colors.disabledContentColor
+    val throttledOnClick = rememberThrottledClick(enabled = enabled, onClick = onClick)
 
     Surface(
-        onClick = onClick,
-        modifier = modifier.size(ButtonTokens.fabSize),
+        onClick = throttledOnClick,
+        modifier = modifier
+            .size(ButtonTokens.fabSize)
+            .buttonSemantics(contentDescription = contentDescription),
         enabled = enabled,
         shape = ButtonTokens.fabShape,
         color = containerColor,
@@ -49,6 +60,15 @@ fun AppFab(
     }
 }
 
+/**
+ * Extended FAB variant with text and optional leading icon.
+ *
+ * @param text Label shown next to the optional icon.
+ * @param icon Optional leading icon.
+ * @param onClick Invoked when FAB is pressed (throttled to avoid spamming).
+ * @param modifier Optional modifier for layout/styling.
+ * @param enabled When false shows disabled colors and ignores clicks.
+ */
 @Composable
 fun AppExtendedFab(
     text: String,
@@ -60,11 +80,13 @@ fun AppExtendedFab(
     val colors = ButtonTokens.fabColors(expanded = true)
     val containerColor = if (enabled) colors.containerColor else colors.disabledContainerColor
     val contentColor = if (enabled) colors.contentColor else colors.disabledContentColor
+    val throttledOnClick = rememberThrottledClick(enabled = enabled, onClick = onClick)
 
     Surface(
-        onClick = onClick,
+        onClick = throttledOnClick,
         modifier = modifier
-            .defaultMinSize(minHeight = ButtonTokens.minHeight(AppButtonVariant.Extended)),
+            .defaultMinSize(minHeight = ButtonTokens.minHeight(AppButtonVariant.Extended))
+            .buttonSemantics(),
         enabled = enabled,
         shape = ButtonTokens.extendedFabShape,
         color = containerColor,

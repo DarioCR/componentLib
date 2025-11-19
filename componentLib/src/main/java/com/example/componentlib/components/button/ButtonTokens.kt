@@ -10,6 +10,9 @@ import com.example.componentlib.components.button.tokens.ButtonShapeTokens
 import com.example.componentlib.components.button.tokens.ButtonSpacingTokens
 import com.example.componentlib.components.button.tokens.ButtonTypographyTokens
 
+/**
+ * Encapsulates the set of colors that a button variant can expose for different states.
+ */
 internal data class ButtonColorScheme(
     val containerColor: Color,
     val contentColor: Color,
@@ -21,6 +24,9 @@ internal data class ButtonColorScheme(
     val loadingTrackColor: Color
 )
 
+/**
+ * Color information for icon-only buttons (standard or toggleable).
+ */
 internal data class IconButtonColorScheme(
     val containerColor: Color,
     val contentColor: Color,
@@ -28,6 +34,9 @@ internal data class IconButtonColorScheme(
     val disabledContentColor: Color
 )
 
+/**
+ * Color tokens for FAB variants which only require enabled/disabled state handling.
+ */
 internal data class FabColorScheme(
     val containerColor: Color,
     val contentColor: Color,
@@ -35,9 +44,18 @@ internal data class FabColorScheme(
     val disabledContentColor: Color
 )
 
+/**
+ * Convenience wrapper describing horizontal and vertical padding pairs.
+ */
 internal data class ButtonPadding(val horizontal: Dp, val vertical: Dp)
 
+/**
+ * Central place that maps [AppButtonVariant] values to color/shape/spacing/typography tokens.
+ */
 internal object ButtonTokens {
+    /**
+     * Returns the enabled/disabled/loading color palette for the provided variant.
+     */
     fun colors(variant: AppButtonVariant): ButtonColorScheme = when (variant) {
         AppButtonVariant.Primary -> ButtonColorTokens.Primary
         AppButtonVariant.Secondary -> ButtonColorTokens.Secondary
@@ -48,6 +66,9 @@ internal object ButtonTokens {
         AppButtonVariant.Extended -> ButtonColorTokens.Extended
     }
 
+    /**
+     * Horizontal/vertical padding used by the various button families.
+     */
     fun padding(variant: AppButtonVariant): ButtonPadding = when (variant) {
         AppButtonVariant.Primary -> ButtonSpacingTokens.PrimaryPadding
         AppButtonVariant.Secondary -> ButtonSpacingTokens.SecondaryPadding
@@ -58,6 +79,9 @@ internal object ButtonTokens {
         AppButtonVariant.Extended -> ButtonSpacingTokens.ExtendedPadding
     }
 
+    /**
+     * Typography tokens bound to each variant.
+     */
     fun typography(variant: AppButtonVariant): TextStyle = when (variant) {
         AppButtonVariant.Primary -> ButtonTypographyTokens.Primary
         AppButtonVariant.Secondary -> ButtonTypographyTokens.Secondary
@@ -68,6 +92,9 @@ internal object ButtonTokens {
         AppButtonVariant.Extended -> ButtonTypographyTokens.Extended
     }
 
+    /**
+     * Shape tokens bound to each variant for consistent rounding.
+     */
     fun shape(variant: AppButtonVariant): Shape = when (variant) {
         AppButtonVariant.Primary -> ButtonShapeTokens.Primary
         AppButtonVariant.Secondary -> ButtonShapeTokens.Secondary
@@ -78,11 +105,17 @@ internal object ButtonTokens {
         AppButtonVariant.Extended -> ButtonShapeTokens.Extended
     }
 
+    /**
+     * Minimum height in dp used when measuring a button surface.
+     */
     fun minHeight(variant: AppButtonVariant): Dp = when (variant) {
         AppButtonVariant.Extended -> ButtonSpacingTokens.ExtendedMinHeight
         else -> ButtonSpacingTokens.StandardMinHeight
     }
 
+    /**
+     * Optional border stroke used by outlined variants (null for the rest).
+     */
     fun borderStroke(variant: AppButtonVariant, enabled: Boolean): BorderStroke? = when (variant) {
         AppButtonVariant.Outlined -> BorderStroke(
             ButtonSpacingTokens.OutlinedBorderWidth,
@@ -102,11 +135,20 @@ internal object ButtonTokens {
 
     const val stateTransitionMillis: Int = ButtonSpacingTokens.StateTransitionMillis
 
+    /**
+     * Colors used by regular icon buttons.
+     */
     fun iconButtonColors(): IconButtonColorScheme = ButtonColorTokens.IconButton
 
+    /**
+     * Colors for toggle icon buttons depending on their checked state.
+     */
     fun toggleIconButtonColors(checked: Boolean): IconButtonColorScheme =
         if (checked) ButtonColorTokens.ToggleIconButtonOn else ButtonColorTokens.ToggleIconButtonOff
 
+    /**
+     * Colors for FAB vs extended FAB.
+     */
     fun fabColors(expanded: Boolean): FabColorScheme =
         if (expanded) ButtonColorTokens.ExtendedFab else ButtonColorTokens.Fab
 

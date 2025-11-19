@@ -5,6 +5,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
+/**
+ * Shapes that match the design spec for every button variant.
+ */
 internal object ButtonShapeTokens {
     private val LargeRadius = 16.dp
     private val MediumRadius = 14.dp

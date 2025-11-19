@@ -27,6 +27,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
+/**
+ * Describes the supported button visual styles so that tokens can resolve padding, shape, typography
+ * and color information consistently across the library.
+ */
 sealed class AppButtonVariant {
     object Primary : AppButtonVariant()
     object Secondary : AppButtonVariant()
@@ -37,6 +41,18 @@ sealed class AppButtonVariant {
     object Extended : AppButtonVariant()
 }
 
+/**
+ * High level button that aligns tokens, accessibility semantics and throttled click handling.
+ *
+ * @param text Visible label for the button.
+ * @param onClick Lambda invoked when the button is pressed (throttled to avoid double taps).
+ * @param modifier Optional modifier to decorate the button container.
+ * @param enabled When false the button shows disabled colors and ignores clicks.
+ * @param loading When true replaces the content with a progress indicator and disables clicks.
+ * @param leadingIcon Optional icon displayed before the text when not loading.
+ * @param trailingIcon Optional icon displayed after the text when not loading.
+ * @param variant Chooses the token family that drives colors/typography/padding/shape.
+ */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppButton(
@@ -58,12 +74,15 @@ fun AppButton(
 
     val containerColor = if (enabled) colorScheme.containerColor else colorScheme.disabledContainerColor
     val contentColor = if (enabled) colorScheme.contentColor else colorScheme.disabledContentColor
+    val clickableEnabled = enabled && !loading
+    val throttledOnClick = rememberThrottledClick(enabled = clickableEnabled, onClick = onClick)
 
     Surface(
         modifier = modifier
+            .buttonSemantics()
             .defaultMinSize(minHeight = minHeight, minWidth = ButtonTokens.minWidth),
-        onClick = onClick,
-        enabled = enabled && !loading,
+        onClick = throttledOnClick,
+        enabled = clickableEnabled,
         shape = shape,
         color = containerColor,
         contentColor = contentColor,
@@ -87,6 +106,10 @@ fun AppButton(
     }
 }
 
+/**
+ * Builds the body of [AppButton] by composing loading indicators, text animation and icons in the
+ * order prescribed by the design tokens.
+ */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun ButtonContent(
@@ -147,6 +170,9 @@ private fun ButtonContent(
     }
 }
 
+/**
+ * Lightweight wrapper used for both leading and trailing icons to keep alignment consistent.
+ */
 @Composable
 private fun ButtonIcon(imageVector: ImageVector, size: Dp) {
     Box(contentAlignment = Alignment.Center) {
