@@ -39,15 +39,16 @@ internal fun Modifier.buttonSemantics(
 internal fun rememberThrottledClick(
     enabled: Boolean,
     throttleIntervalMillis: Long = DefaultButtonThrottleIntervalMillis,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    timeSource: () -> Long = { SystemClock.elapsedRealtime() }
 ): () -> Unit {
     val latestOnClick = rememberUpdatedState(onClick)
     val lastInteractionTimestamp = remember { mutableStateOf(0L) }
 
-    return remember(enabled, throttleIntervalMillis) {
+    return remember(enabled, throttleIntervalMillis, timeSource) {
         throttled@{
             if (!enabled) return@throttled
-            if (lastInteractionTimestamp.shouldAllowInteraction(throttleIntervalMillis)) {
+            if (lastInteractionTimestamp.shouldAllowInteraction(throttleIntervalMillis, timeSource)) {
                 latestOnClick.value()
             }
         }
@@ -61,15 +62,16 @@ internal fun rememberThrottledClick(
 internal fun rememberThrottledOnCheckedChange(
     enabled: Boolean,
     throttleIntervalMillis: Long = DefaultButtonThrottleIntervalMillis,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
+    timeSource: () -> Long = { SystemClock.elapsedRealtime() }
 ): (Boolean) -> Unit {
     val latestOnCheckedChange = rememberUpdatedState(onCheckedChange)
     val lastInteractionTimestamp = remember { mutableStateOf(0L) }
 
-    return remember(enabled, throttleIntervalMillis) {
+    return remember(enabled, throttleIntervalMillis, timeSource) {
         throttled@{ checked ->
             if (!enabled) return@throttled
-            if (lastInteractionTimestamp.shouldAllowInteraction(throttleIntervalMillis)) {
+            if (lastInteractionTimestamp.shouldAllowInteraction(throttleIntervalMillis, timeSource)) {
                 latestOnCheckedChange.value(checked)
             }
         }
