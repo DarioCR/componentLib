@@ -1,11 +1,13 @@
 package com.example.componentlib.components.button
 
+// Pruebas unitarias de los tokens de color usados por AppIconButton y AppToggleIconButton.
 import androidx.compose.ui.graphics.Color
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class AppIconButtonTokensTest {
 
+    // Verifica que la paleta del icon button coincida con el diseño.
     @Test
     fun iconButtonColors_matchDesignSystemPalette() {
         val colors = ButtonTokens.iconButtonColors()
@@ -16,6 +18,7 @@ class AppIconButtonTokensTest {
         assertEquals(Color(0xFF8A94A7), colors.disabledContentColor)
     }
 
+    // Verifica que el estado checked use la paleta encendida.
     @Test
     fun toggleIconButtonColors_useCheckedPaletteWhenOn() {
         val colors = ButtonTokens.toggleIconButtonColors(checked = true)
@@ -26,6 +29,7 @@ class AppIconButtonTokensTest {
         assertEquals(Color(0xB3FFFFFF), colors.disabledContentColor)
     }
 
+    // Verifica que el estado apagado use la paleta neutral.
     @Test
     fun toggleIconButtonColors_fallBackToNeutralPaletteWhenOff() {
         val colors = ButtonTokens.toggleIconButtonColors(checked = false)

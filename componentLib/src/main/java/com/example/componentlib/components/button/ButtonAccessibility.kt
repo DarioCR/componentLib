@@ -14,13 +14,10 @@ import androidx.compose.ui.semantics.semantics
 
 private const val DefaultButtonThrottleIntervalMillis = 600L
 
-/**
- * Applies a default TalkBack role and optional content description to clickable containers.
- *
- * @param role Accessibility role exposed to TalkBack (defaults to [Role.Button]).
- * @param contentDescription Optional description read by TalkBack.
- * @param mergeDescendants When true combines descendant semantics with the surface.
- */
+// Aplica un rol de TalkBack por defecto y una contentDescription opcional a contenedores clicables.
+// role: Rol de accesibilidad expuesto a TalkBack (por defecto Role.Button).
+// contentDescription: Descripción opcional leída por TalkBack.
+// mergeDescendants: Cuando es true combina la semántica de los descendientes con la superficie.
 internal fun Modifier.buttonSemantics(
     role: Role = Role.Button,
     contentDescription: String? = null,
@@ -32,9 +29,7 @@ internal fun Modifier.buttonSemantics(
     }
 }
 
-/**
- * Remembers a lambda that ignores clicks faster than [throttleIntervalMillis] to avoid tap spam.
- */
+// Recuerda una lambda que ignora clics más rápidos que throttleIntervalMillis para evitar taps repetidos.
 @Composable
 internal fun rememberThrottledClick(
     enabled: Boolean,
@@ -55,9 +50,7 @@ internal fun rememberThrottledClick(
     }
 }
 
-/**
- * Similar to [rememberThrottledClick] but forwards checked state changes for toggleable surfaces.
- */
+// Similar a rememberThrottledClick pero propagando cambios de estado checked para superficies con toggle.
 @Composable
 internal fun rememberThrottledOnCheckedChange(
     enabled: Boolean,
@@ -78,9 +71,7 @@ internal fun rememberThrottledOnCheckedChange(
     }
 }
 
-/**
- * Returns true when enough time has elapsed since the last interaction and updates the timestamp.
- */
+// Devuelve true cuando ha pasado suficiente tiempo desde la última interacción y actualiza el timestamp.
 internal fun MutableState<Long>.shouldAllowInteraction(
     throttleIntervalMillis: Long,
     timeProvider: () -> Long = { SystemClock.elapsedRealtime() }

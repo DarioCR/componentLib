@@ -27,10 +27,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
-/**
- * Describes the supported button visual styles so that tokens can resolve padding, shape, typography
- * and color information consistently across the library.
- */
+// Describe los estilos visuales de botón soportados para que los tokens puedan resolver padding, forma,
+// tipografía y colores de forma consistente en toda la librería.
 sealed class AppButtonVariant {
     object Primary : AppButtonVariant()
     object Secondary : AppButtonVariant()
@@ -41,18 +39,15 @@ sealed class AppButtonVariant {
     object Extended : AppButtonVariant()
 }
 
-/**
- * High level button that aligns tokens, accessibility semantics and throttled click handling.
- *
- * @param text Visible label for the button.
- * @param onClick Lambda invoked when the button is pressed (throttled to avoid double taps).
- * @param modifier Optional modifier to decorate the button container.
- * @param enabled When false the button shows disabled colors and ignores clicks.
- * @param loading When true replaces the content with a progress indicator and disables clicks.
- * @param leadingIcon Optional icon displayed before the text when not loading.
- * @param trailingIcon Optional icon displayed after the text when not loading.
- * @param variant Chooses the token family that drives colors/typography/padding/shape.
- */
+// Botón de alto nivel que alinea tokens, semántica de accesibilidad y manejo de clics con throttling.
+// text: Etiqueta visible del botón.
+// onClick: Lambda invocada cuando se presiona el botón (con throttling para evitar dobles taps).
+// modifier: Modifier opcional para decorar el contenedor del botón.
+// enabled: Cuando es false muestra colores deshabilitados e ignora clics.
+// loading: Cuando es true reemplaza el contenido por un indicador de progreso y deshabilita clics.
+// leadingIcon: Ícono opcional que se muestra antes del texto cuando no está cargando.
+// trailingIcon: Ícono opcional que se muestra después del texto cuando no está cargando.
+// variant: Elige la familia de tokens que define colores/tipografía/padding/forma.
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppButton(
@@ -106,10 +101,8 @@ fun AppButton(
     }
 }
 
-/**
- * Builds the body of [AppButton] by composing loading indicators, text animation and icons in the
- * order prescribed by the design tokens.
- */
+// Construye el contenido de AppButton componiendo indicador de carga, texto animado e íconos
+// en el orden prescrito por los tokens de diseño.
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun ButtonContent(
@@ -170,9 +163,7 @@ private fun ButtonContent(
     }
 }
 
-/**
- * Lightweight wrapper used for both leading and trailing icons to keep alignment consistent.
- */
+// Wrapper ligero usado para íconos leading y trailing para mantener la alineación consistente.
 @Composable
 private fun ButtonIcon(imageVector: ImageVector, size: Dp) {
     Box(contentAlignment = Alignment.Center) {

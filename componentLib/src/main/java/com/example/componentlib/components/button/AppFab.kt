@@ -16,15 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 
-/**
- * Standard floating action button with throttled click handling and TalkBack semantics.
- *
- * @param icon Icon displayed in the center.
- * @param contentDescription TalkBack description (nullable when decorative).
- * @param onClick Invoked when FAB is pressed (throttled to avoid spamming).
- * @param modifier Optional modifier for layout/styling.
- * @param enabled When false shows disabled colors and ignores clicks.
- */
+// Floating action button estándar con manejo de clics con throttling y semántica para TalkBack.
+// icon: Ícono mostrado en el centro.
+// contentDescription: Descripción para TalkBack (nullable cuando es decorativo).
+// onClick: Invocado cuando se presiona el FAB (con throttling para evitar spam).
+// modifier: Modifier opcional para layout/estilo.
+// enabled: Cuando es false muestra colores deshabilitados e ignora clics.
 @Composable
 fun AppFab(
     icon: ImageVector,
@@ -60,15 +57,12 @@ fun AppFab(
     }
 }
 
-/**
- * Extended FAB variant with text and optional leading icon.
- *
- * @param text Label shown next to the optional icon.
- * @param icon Optional leading icon.
- * @param onClick Invoked when FAB is pressed (throttled to avoid spamming).
- * @param modifier Optional modifier for layout/styling.
- * @param enabled When false shows disabled colors and ignores clicks.
- */
+// Variante de FAB extendido con texto e ícono leading opcional.
+// text: Etiqueta mostrada junto al ícono opcional.
+// icon: Ícono leading opcional.
+// onClick: Invocado cuando se presiona el FAB (con throttling para evitar spam).
+// modifier: Modifier opcional para layout/estilo.
+// enabled: Cuando es false muestra colores deshabilitados e ignora clics.
 @Composable
 fun AppExtendedFab(
     text: String,

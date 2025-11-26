@@ -14,15 +14,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.toggleableState
 import androidx.compose.ui.state.ToggleableState
 
-/**
- * Icon only button that exposes TalkBack semantics and throttled click handling.
- *
- * @param imageVector Icon rendered in the center.
- * @param contentDescription Description announced by TalkBack (nullable when decorative).
- * @param onClick Invoked when the surface is tapped (throttled internally).
- * @param modifier Optional modifier applied to the surface.
- * @param enabled When false renders disabled colors and ignores clicks.
- */
+// Botón solo ícono que expone semántica para TalkBack y maneja clics con throttling.
+// imageVector: Ícono renderizado en el centro.
+// contentDescription: Descripción anunciada por TalkBack (nullable cuando es decorativo).
+// onClick: Invocado cuando se toca la superficie (con throttling interno).
+// modifier: Modifier opcional aplicado a la superficie.
+// enabled: Cuando es false muestra colores deshabilitados e ignora clics.
 @Composable
 fun AppIconButton(
     imageVector: ImageVector,
@@ -46,21 +43,19 @@ fun AppIconButton(
         color = containerColor,
         contentColor = contentColor
     ) {
-        IconButtonContent(image = imageVector, contentDescription = contentDescription)
+        // La descripción ya está en la superficie, el ícono interno no necesita contentDescription.
+        IconButtonContent(image = imageVector)
     }
 }
 
-/**
- * Toggleable icon button that mirrors [AppIconButton] but exposes checked state to TalkBack.
- *
- * @param checked Current toggle state.
- * @param onCheckedChange Callback invoked when the user toggles the button (throttled).
- * @param checkedIcon Icon displayed for the checked state.
- * @param uncheckedIcon Icon displayed for the unchecked state (defaults to [checkedIcon]).
- * @param contentDescription Description announced by TalkBack describing the action/state.
- * @param modifier Optional modifier applied to the surface.
- * @param enabled When false renders disabled colors and ignores toggles.
- */
+// Botón de ícono con toggle que replica AppIconButton pero expone el estado checked a TalkBack.
+// checked: Estado actual del toggle.
+// onCheckedChange: Callback invocado cuando el usuario cambia el estado (con throttling).
+// checkedIcon: Ícono mostrado cuando el estado es checked.
+// uncheckedIcon: Ícono mostrado cuando el estado es unchecked (por defecto checkedIcon).
+// contentDescription: Descripción anunciada por TalkBack que describe la acción/estado.
+// modifier: Modifier opcional aplicado a la superficie.
+// enabled: Cuando es false muestra colores deshabilitados e ignora cambios de estado.
 @Composable
 fun AppToggleIconButton(
     checked: Boolean,
@@ -93,22 +88,21 @@ fun AppToggleIconButton(
         contentColor = contentColor
     ) {
         val icon = if (checked) checkedIcon else uncheckedIcon
-        IconButtonContent(image = icon, contentDescription = contentDescription)
+        // La descripción ya está en la superficie, el ícono interno no necesita contentDescription.
+        IconButtonContent(image = icon)
     }
 }
 
-/**
- * Shared icon content that keeps padding and icon sizing consistent across button variants.
- */
+// Contenido compartido de ícono que mantiene padding y tamaño de ícono consistentes entre variantes.
 @Composable
-private fun IconButtonContent(image: ImageVector, contentDescription: String?) {
+private fun IconButtonContent(image: ImageVector) {
     Box(
         modifier = Modifier.padding(ButtonTokens.iconButtonPadding),
         contentAlignment = Alignment.Center
     ) {
         Icon(
             imageVector = image,
-            contentDescription = contentDescription,
+            contentDescription = null,
             modifier = Modifier.size(ButtonTokens.iconButtonIconSize)
         )
     }

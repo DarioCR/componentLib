@@ -1,5 +1,6 @@
 package com.example.componentlib.components.button
 
+// Pruebas de UI para AppButton y AppToggleIconButton usando Compose y reglas de Android.
 import androidx.activity.ComponentActivity
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -31,6 +32,7 @@ class ButtonComponentsTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
+    // Verifica que AppButton tenga rol de botón y dispare el callback.
     @Test
     fun appButton_exposesRoleAndRespondsToClicks() {
         var clicks = 0
@@ -54,6 +56,7 @@ class ButtonComponentsTest {
         }
     }
 
+    // Verifica que el estado loading deshabilite el botón en la UI.
     @Test
     fun appButton_loadingStateIsNotEnabled() {
         composeTestRule.setContent {
@@ -68,6 +71,7 @@ class ButtonComponentsTest {
         composeTestRule.onNodeWithTag("loading_button").assertIsNotEnabled()
     }
 
+    // Verifica que AppIconButton exponga la contentDescription correcta.
     @Test
     fun appIconButton_setsContentDescription() {
         composeTestRule.setContent {
@@ -84,14 +88,15 @@ class ButtonComponentsTest {
             .assertContentDescriptionEquals("Add item")
     }
 
+    // Verifica que AppToggleIconButton exponga su estado y llame al callback.
     @Test
     fun appToggleIconButton_reportsToggleStateAndFiresCallback() {
-        var latestCheckedState = false
+        var callbackInvoked = false
 
         composeTestRule.setContent {
             AppToggleIconButton(
                 checked = true,
-                onCheckedChange = { latestCheckedState = it },
+                onCheckedChange = { callbackInvoked = true },
                 checkedIcon = Icons.Rounded.PlayArrow,
                 contentDescription = "Toggle",
                 modifier = Modifier.testTag("toggle_icon")
@@ -107,7 +112,7 @@ class ButtonComponentsTest {
         toggleNode.performClick()
 
         composeTestRule.runOnIdle {
-            assertTrue(latestCheckedState)
+            assertTrue(callbackInvoked)
         }
     }
 }

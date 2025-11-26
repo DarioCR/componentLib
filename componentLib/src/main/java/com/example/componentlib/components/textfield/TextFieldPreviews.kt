@@ -1,5 +1,6 @@
 package com.example.componentlib.components.textfield
 
+// Composables de preview que muestran variantes de TextField para inspección en tiempo de diseño.
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

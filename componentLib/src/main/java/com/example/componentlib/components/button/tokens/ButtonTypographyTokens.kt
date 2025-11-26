@@ -5,9 +5,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-/**
- * Typography definitions that match the visual hierarchy for each button type.
- */
+// Definiciones de tipografía que respetan la jerarquía visual de cada tipo de botón.
 internal object ButtonTypographyTokens {
     private val BaseFamily = FontFamily.SansSerif
 

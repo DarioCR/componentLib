@@ -1,5 +1,6 @@
 package com.example.componentlib.components.button
 
+// Composables de preview que muestran variantes de botones para inspección en tiempo de diseño.
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -207,10 +208,8 @@ private fun DynamicButtonPreview() {
     }
 }
 
-/**
- * Helper slot that spaces button previews according to the variant padding, making screenshots
- * easier to read in the preview panel.
- */
+// Slot de ayuda que distribuye las previews de botones según el padding de cada variante,
+// haciendo más legibles las capturas en el panel de previews.
 @Composable
 private fun ButtonPreviewSlot(
     variant: AppButtonVariant,
@@ -227,9 +226,7 @@ private fun ButtonPreviewSlot(
     )
 }
 
-/**
- * Reusable container for previews that do not depend on a specific button variant.
- */
+// Contenedor reutilizable para previews que no dependen de una variante específica de botón.
 @Composable
 private fun GenericPreviewSlot(
     padding: Dp = ButtonTokens.iconSpacing,

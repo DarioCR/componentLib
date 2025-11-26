@@ -1,9 +1,7 @@
 package com.example.componentlib.components.textfield
 
-/**
- * Helper that centralizes supporting text logic (helper/error) so composables can expose
- * consistent semantics and visuals.
- */
+// Helper que centraliza la lógica del texto de apoyo (helper/error) para que los composables expongan
+// semántica y visuales consistentes.
 data class TextFieldState(
     val helperText: String? = null,
     val errorMessage: String? = null

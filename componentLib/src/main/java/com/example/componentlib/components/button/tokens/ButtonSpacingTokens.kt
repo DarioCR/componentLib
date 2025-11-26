@@ -4,9 +4,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.componentlib.components.button.ButtonPadding
 
-/**
- * Collects spacing, sizing and measurement constants required by the button components.
- */
+// Reúne constantes de espaciado, tamaño y medidas requeridas por los componentes de botón.
 internal object ButtonSpacingTokens {
     val PrimaryPadding = ButtonPadding(horizontal = 24.dp, vertical = 12.dp)
     val SecondaryPadding = ButtonPadding(horizontal = 22.dp, vertical = 12.dp)

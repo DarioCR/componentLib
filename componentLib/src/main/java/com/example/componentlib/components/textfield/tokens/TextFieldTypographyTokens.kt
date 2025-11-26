@@ -2,10 +2,10 @@ package com.example.componentlib.components.textfield.tokens
 
 
 import androidx.compose.ui.text.TextStyle
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+// Definiciones de tipografía para texto, placeholder, label y texto de ayuda.
 internal object TextFieldTypographyTokens {
     val Body: TextStyle = TextStyle(
         fontSize = 16.sp,

@@ -3,9 +3,7 @@ package com.example.componentlib.components.textfield
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-/**
- * Search-specific wrapper that wires the correct icons and clear behavior.
- */
+// Wrapper específico para búsquedas que conecta los íconos correctos y el comportamiento de limpiar.
 @Composable
 fun AppSearchTextField(
     value: String,

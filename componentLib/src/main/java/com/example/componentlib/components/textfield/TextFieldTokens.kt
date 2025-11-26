@@ -10,6 +10,7 @@ import com.example.componentlib.components.textfield.tokens.TextFieldShapeTokens
 import com.example.componentlib.components.textfield.tokens.TextFieldSpacingTokens
 import com.example.componentlib.components.textfield.tokens.TextFieldTypographyTokens
 
+// Tokens de color, tipografía, espaciado y forma usados por las variantes de AppTextField.
 internal data class AppTextFieldColorScheme(
     val textColor: Color,
     val placeholderColor: Color,
@@ -24,8 +25,9 @@ internal data class AppTextFieldColorScheme(
     val disabledIndicatorColor: Color,
     val cursorColor: Color,
     val selectionColor: Color
-)
+) 
 
+// Punto central para resolver los design tokens de los TextField.
 internal object TextFieldTokens {
     fun colors(variant: AppTextFieldVariant): AppTextFieldColorScheme = when (variant) {
         AppTextFieldVariant.Filled -> TextFieldColorTokens.Filled

@@ -3,6 +3,7 @@ package com.example.componentlib.components.textfield.tokens
 import androidx.compose.ui.graphics.Color
 import com.example.componentlib.components.textfield.AppTextFieldColorScheme
 
+// Paleta de color usada por las variantes de text field filled y outlined.
 internal object TextFieldColorTokens {
     private val Neutral900 = Color(0xFF0F172A)
     private val Neutral700 = Color(0xFF475467)

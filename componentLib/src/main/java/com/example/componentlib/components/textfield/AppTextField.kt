@@ -44,6 +44,27 @@ sealed class AppTextFieldVariant {
     object Outlined : AppTextFieldVariant()
 }
 
+// TextField de alto nivel que centraliza estilos, íconos, semántica y sanitización de valor.
+// value: Valor de texto actual.
+// onValueChange: Callback invocado cuando el valor cambia.
+// modifier: Modifier opcional para decorar el composable.
+// label: Texto de etiqueta opcional mostrado sobre el campo.
+// placeholder: Texto placeholder opcional cuando el valor está vacío.
+// isPassword: Cuando es true aplica comportamiento y transformaciones específicas de contraseña.
+// isNumericOnly: Cuando es true filtra la entrada del usuario a solo dígitos.
+// isSearch: Cuando es true muestra icono de búsqueda y acción de limpiar.
+// helperText: Texto de ayuda opcional mostrado debajo del campo.
+// errorMessage: Texto de error opcional que tiene prioridad sobre helperText.
+// enabled: Controla si el campo se puede editar.
+// readOnly: Muestra el valor pero ignora la entrada cuando es true.
+// singleLine: Cuando es true restringe el texto a una sola línea.
+// maxLines: Número máximo de líneas visibles.
+// leadingIcon: Ícono opcional que se muestra al inicio del campo.
+// trailingIcon: Ícono opcional que se muestra al final del campo.
+// variant: Elige entre estilos filled y outlined.
+// passwordVisible: Controla si el texto de contraseña es visible.
+// onPasswordVisibilityChange: Callback opcional para controlar la visibilidad externamente.
+// onTrailingIconClick: Manejador opcional para taps sobre el ícono trailing.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTextField(

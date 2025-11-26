@@ -4,10 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 
-/**
- * Convenience entry point for password fields that exposes the visibility state so callers
- * keep ownership of all interactions (state hoisting).
- */
+// Punto de entrada de conveniencia para campos de contraseña que expone el estado de visibilidad
+// para que el llamador mantenga la propiedad de todas las interacciones (state hoisting).
 @Composable
 fun AppPasswordTextField(
     value: String,
